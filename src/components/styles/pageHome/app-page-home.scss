@@ -1,0 +1,46 @@
+.app-page-home {
+}
+
+.exchange {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &__selected-desc {
+        height: 48.5px;
+
+        width: 600px;
+    }
+
+    &__select-wrapper {
+        position: absolute;
+        max-height: 201.5px;
+        overflow: auto;
+    }
+
+    &__select-list {
+        width: 600px;
+        background-color: var(--white);
+    }
+
+    &__result-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+}
+.ui-input, .fake-input {
+    width: 100%;
+    background-color: transparent;
+    padding: 10px;
+    border: 1px solid var(--footer-subscribe-input-border, #8D959C);
+    color: var(--footer-subscribe-input-text, #8D959C);
+
+    font-size: var(--text-base-font-size, 18px);
+    line-height: var(--text-base-line-height, 26px);
+
+    &:focus {
+      border-color: var(--blue);
+    }
+}
