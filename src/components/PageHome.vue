@@ -1,11 +1,11 @@
 <template>
     <div
-        v-if="!isLoading"
         class="app-page"
     >
-        <AppPlug404 v-if="is404Plug" />
+        <AppPlugLoading v-if="isLoading" />
+        <AppPlug404 v-if="is404Plug && !isLoading" />
         <section 
-            v-if="isPageDataLoaded" 
+            v-if="isPageDataLoaded && !isLoading" 
             class="app-page__content"
         >
             <div class="exchange">
@@ -59,13 +59,15 @@
 <script>
 
 import {ref, unref} from "vue"
-import AppPlug404 from "./AppPlug404.vue";
-import {useApi} from "@/components/features/useApi";
+import AppPlug404 from "./AppPlug404.vue"
+import AppPlugLoading from "./AppPlugLoading.vue"
+import {useApi} from "@/components/features/useApi"
 
 export default {
     name: "PageHome",
     components: {
-        AppPlug404
+        AppPlug404,
+        AppPlugLoading
     },
 
     setup( ){
@@ -106,13 +108,11 @@ export default {
             isPageDataLoaded,
             is404Plug,
             isLoading,
-
             isSelectOpen,
             startValue,
             exchangeResult,
             selectedExchangeValue,
             selectedExchangeDesc,
-
             openSelect,
             selectValue,
             setResultValue,

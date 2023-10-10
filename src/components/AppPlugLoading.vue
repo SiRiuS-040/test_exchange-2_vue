@@ -1,11 +1,8 @@
 <template>
     <section class="app-plug">
-        <img src="../assets/img/404.png" alt="" width="280" height="200" class="app-404-plug__image">
-        <h2 class="app-plug__text">
-            Ошибка запуска приложения
-        </h2>
+        <img src="../assets/img/loading.gif" alt="" width="40" height="40" class="app-404-plug__image">
         <p>
-            (возможно неполадки с сетью / API)
+            Загружаются данные курсов валют
         </p>
     </section>
 </template>
@@ -13,7 +10,7 @@
 <script>
 
 export default {
-    name: "AppPlug404",
+    name: "AppPlugLoading",
     props: {
         componentData: {
             type: Object,
