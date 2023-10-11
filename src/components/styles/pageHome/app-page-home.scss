@@ -9,7 +9,6 @@
 
     &__selected-desc {
         height: 48.5px;
-
         width: 600px;
     }
 
@@ -17,6 +16,20 @@
         position: absolute;
         max-height: 201.5px;
         overflow: auto;
+
+        scrollbar-color: gray transparent;
+        scrollbar-width: thin;
+
+        &::-webkit-scrollbar-thumb {
+            width: 7px;
+            background: gray;
+            border-radius: 4px;
+        }
+        &::-webkit-scrollbar {
+            width: 7px;
+            background: lightgray;
+            border-radius: 4px;
+        }
     }
 
     &__select-list {
