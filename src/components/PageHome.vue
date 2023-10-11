@@ -58,7 +58,7 @@
 
 <script>
 
-import {ref, unref} from "vue"
+import {ref, unref, computed} from "vue"
 import AppPlug404 from "./AppPlug404.vue"
 import AppPlugLoading from "./AppPlugLoading.vue"
 import {useApi} from "@/components/features/useApi"
@@ -69,7 +69,9 @@ export default {
         AppPlug404,
         AppPlugLoading
     },
+    mounted() {
 
+    },
     setup( ){
         const {
             appPageData,
@@ -78,11 +80,22 @@ export default {
             isLoading,
         } = useApi('')
 
-        const startValue = ref(0),
-            selectedExchangeValue = ref(0),
-            exchangeResult = ref(0),
-            selectedExchangeDesc = ref('Выберите валюту'),
-            isSelectOpen = ref(false)
+        const startValue = ref(0)
+        const exchangeResult = ref(0)
+        const isSelectOpen = ref(false)
+        const savedCurrency = ref(localStorage.currency)
+
+        const getValuteDesc = (currency) => {
+            return `${unref(appPageData).Valute[currency]['Name']} (${unref(appPageData).Valute[currency]['CharCode']})`
+        }
+
+        const selectedExchangeValue = computed(() => {
+            return unref(savedCurrency) ? +(unref(appPageData).Valute[unref(savedCurrency)]['Value'] / unref(appPageData).Valute[unref(savedCurrency)]['Nominal']).toFixed(2) : 0
+        })      
+
+        const selectedExchangeDesc = computed(() => {
+            return unref(savedCurrency) ? getValuteDesc(unref(savedCurrency)) : 'Выберите валюту'
+        }) 
 
         const openSelect = () => {
             isSelectOpen.value = true
@@ -97,9 +110,9 @@ export default {
         }
 
         const selectValue = (item) => {
-            selectedExchangeValue.value = +(item['Value'] / item['Nominal']).toFixed(2)
-            selectedExchangeDesc.value = `${item['Name']} (${item['CharCode']})`
             isSelectOpen.value = false
+            localStorage.currency = item['CharCode']
+            savedCurrency.value = localStorage.currency
             setResultValue()
         }
 
