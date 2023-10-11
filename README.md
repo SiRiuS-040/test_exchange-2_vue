@@ -1,4 +1,4 @@
-# test_shop_vue
+# test_exchange-2_vue
 
 https://sirius-040.github.io/test_exchange-2_vue/#/
 
